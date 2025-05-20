@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Details | ChainTrack</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: linear-gradient(to top right, #667eea, #764ba2);
+      padding: 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .order-card {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .order-info {
+      font-size: 16px;
+      margin: 6px 0;
+    }
+
+    .tracking-status {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+    }
+
+    .status-step {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #764ba2;
+    }
+
+    .remove-btn {
+      margin-top: 10px;
+      padding: 8px 20px;
+      background: #ff4d4d;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background: #ff1a1a;
+    }
+
+    .proceed-btn {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #fff;
+      color: #764ba2;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .proceed-btn:hover {
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="ChainTrack Logo" height="40">
+     
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="track.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="log.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1 style="text-align:center; margin-bottom: 30px;">Your Orders</h1>
+  <div id="ordersContainer"></div>
+
+  <div style="text-align:center">
+    <button class="proceed-btn" onclick="location.href='thankyou.html'">proceed</button>
+  </div>
+
+  <script>
+    const ordersContainer = document.getElementById("ordersContainer");
+    const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+    // Check if there are no orders
+    if (orderHistory.length === 0) {
+      ordersContainer.innerHTML = "<p style='text-align:center;'>No orders found.</p>";
+    } else {
+      orderHistory.reverse().forEach((order, index) => {
+        const card = document.createElement("div");
+        card.className = "order-card";
+        card.innerHTML = `
+          <div class="order-info"><strong>Order ID:</strong> ${order.id}</div>
+          <div class="order-info"><strong>Name:</strong> ${order.name}</div>
+          <div class="order-info"><strong>Address:</strong> ${order.address}</div>
+          <div class="order-info"><strong>Contact:</strong> ${order.contact}</div>
+          <div class="order-info"><strong>Email:</strong> ${order.email}</div>
+          <div class="order-info"><strong>Timestamp:</strong> ${new Date(order.timestamp).toLocaleString()}</div>
+          <div class="order-info"><strong>Items:</strong> ${order.items.map(item => item.name).join(', ')}</div>
+
+          <div class="tracking-status">
+            <h3 style="margin-bottom: 10px;">Tracking</h3>
+            <div class="status-step">Order Placed</div>
+            <div class="status-step">Dispatched</div>
+            <div class="status-step">In Transit</div>
+            <div class="status-step">Delivered</div>
+          </div>
+
+          <button class="remove-btn" onclick="removeOrder(${index})">Remove Order</button>
+        `;
+        ordersContainer.appendChild(card);
+      });
+    }
+
+    // Function to remove order from localStorage and update the page
+    function removeOrder(index) {
+      // Remove from localStorage
+      orderHistory.splice(index, 1);  // Remove order at the specified index
+      localStorage.setItem("orderHistory", JSON.stringify(orderHistory));  // Save the updated data
+
+      // Remove the order card from the page
+      const allCards = document.querySelectorAll(".order-card");
+      allCards[index].remove();  // Remove the card corresponding to the clicked order
+
+      // If there are no more orders, display "No orders found"
+      if (orderHistory.length === 0) {
+        ordersContainer.innerHTML = "<p style='text-align:center;'>No orders found.</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>

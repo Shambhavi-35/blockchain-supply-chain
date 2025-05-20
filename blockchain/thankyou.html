@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Placed | ChainTrack</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .thankyou-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .thankyou-section h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .thankyou-section p {
+      font-size: 20px;
+      max-width: 600px;
+    }
+
+    .cta-btn {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #fff;
+      color: #764ba2;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .cta-btn:hover {
+      background: #eee;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="ChainTrack Logo" height="40">
+      <h2>ChainTrack</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="track.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="log.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="thankyou-section">
+    <h1>Thank You!</h1>
+    <p>Your order has been placed successfully. We’ll update you when it’s on the way!</p>
+    <a href="home.html" class="cta-btn">Back to Home</a>
+  </section>
+
+  <footer>
+    <p>© 2025 ChainTrack. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

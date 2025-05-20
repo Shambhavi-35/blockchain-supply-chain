@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChainTrack | Products</title>
+  <link rel="stylesheet" href="home.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: linear-gradient(to top right, #764ba2, #667eea);
+      overflow-x: hidden;
+    }
+
+    .hero-bg {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs0BYcfNqj_zIGnk7sjGG5nPI1cr1W9TyUyg&s') no-repeat center/cover;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .products-section {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .search-bar {
+      margin-bottom: 30px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 60%;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 20px;
+      border-radius: 12px;
+      width: 250px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #fff;
+      color: #764ba2;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .add-btn:hover {
+      background: #eee;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-bg"></div>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="ChainTrack Logo" />
+      <h2>ChainTrack</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="track.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="login1.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="products-section">
+    <h1>Available Products</h1>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
+    </div>
+
+    <div class="product-list" id="productList">
+      <!-- Products will be populated by JS -->
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 ChainTrack. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        name: "Organic Cotton",
+        price: "₹250",
+        desc: "High-quality natural cotton from India",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwfCATgW2CFtcNt9XmciIVRUv4v5DWJXsf3w&s"
+      },
+      {
+        name: "Recycled Plastic",
+        price: "₹80",
+        desc: "Eco-friendly material for manufacturing",
+        img: "https://www.handmadecharlotte.com/wp-content/uploads/2013/05/1-cover.jpg"
+      },
+      {
+        name: "Pharma Glass Bottles",
+        price: "₹150",
+        desc: "Medical-grade containers for liquids",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIz9tERHSb4CQJIMDrbHJHy9sR5AAaC6d8SQ&s"
+      },
+      {
+        name: "Solar Panels",
+        price: "₹5000",
+        desc: "Efficient solar energy modules",
+        img: "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202401/65b09ad15d89e-pradhan-mantri-suryodaya-yojana-what-is-the-cost-of-installing-rooftop-solar-panel-check-subsidy-240623703-16x9.jpg?size=1200:675"
+      },
+      {
+        name: "Copper Wire",
+        price: "₹300",
+        desc: "High conductivity wiring for industry",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV9jpKk-4Y0eS0IyEeS_QzuHtfRq19Te2Auw&s"
+      },
+      {
+        name: "Bamboo toothbrushes",
+        price: "₹3000",
+        desc: "biodegradable alternative to plastic brushes with a natural bamboo handle",
+        img: "https://bambooindia.com/cdn/shop/files/Nano-round-soft5976_500x.png?v=1707634750"
+      },
+      {
+         name: "Solar-powered chargers",
+        price: "₹200",
+        desc: "Portable device that uses sunlight to generate electricity and charge electronic gadgets",
+        img: "https://images-cdn.ubuy.co.in/65cc3cb75b8e111e043a698a-bigblue-10w-etfe-solar-panel-charger.jpg"
+      }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function displayProducts(filtered = products) {
+      const list = document.getElementById('productList');
+      list.innerHTML = '';
+
+      filtered.forEach((p, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <strong>${p.price}</strong><br/>
+          <button class="add-btn" onclick="addToCart(${index})">Add to Cart</button>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function addToCart(index) {
+      cart.push(products[index]);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = 'cart.html'; // Redirect after adding
+    }
+
+    function filterProducts() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search)
+      );
+      displayProducts(filtered);
+    }
+
+    displayProducts();
+  </script>
+</body>
+</html>
